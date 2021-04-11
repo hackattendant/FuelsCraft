@@ -32,7 +32,7 @@ GetCylinder <- function(x=0, y=0, radius=1, num_around=25, num_up=5, height=10,
   }
   # must have a height
   if (height <= 0) {
-    err_message <- "height MUST be greater than 0"
+    err_message <- "height MUST be greater than 0."
   }
   
   # ____________________________________ build cylinder ________________________
