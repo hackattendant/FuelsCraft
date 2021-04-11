@@ -105,31 +105,37 @@ cylinder_default_args <- GetCylinder()
 
 # plot cylinder
 library(rgl)
-plot3d(cylinder_default_args)
+rgl.open()
+plot3d(cylinder_default_args, col="blue")
+
 
 # ________________________________________________ dense cylinder for meshing __
-# We want a cylinder with 0.25 radius and 10 height
+# We want a cylinder with radius=0.25 and height = 10
 x <- 0                    # center x coord
 y <- 0                    # center y coord
 radius <- 0.25            # cylinder radius
 height <- 10              # cylinder height
 num_around <- 360         # number of points around circle for cylinder pipe
-num_stacked <- 1000       # number of circles stacked to create cylinder pipe
+num_stacked <- 500       # number of circles stacked to create cylinder pipe
 lids = TRUE               # We want full cylinder with lids (top, bottom)
-lid_step = 0.00001        # step size for lids converging on center
+lid_step = 0.01        # step size for lids converging on center
 
 # create cylinder using parameters above
 cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked,
 									height, lids, lid_step)
 
-cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked, height,
-                                 lids, lid_step)
+# visualize point cloud
 library(rgl)
-plot3d(cylinder_for_mesh)
+rgl.open()
+plot3d(cylinder_for_mesh, col="red")
 
 
-# ______________________________________ save full cylinder for meshing ________
+# ____________________________________________ save full cylinder for meshing __
 write.csv(cylinder_for_mesh,
           file="~/Desktop/cylinder_rad0.25_height10_withlids.xyz",
           row.names = FALSE)
 
+
+# ____________________________________________ sleep until all windows closed __
+# keep plots alive when using Rscript
+while(names(dev.cur()) != 'null device') Sys.sleep(1)
