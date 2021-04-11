@@ -116,7 +116,7 @@ y <- 0                    # center y coord
 radius <- 0.25            # cylinder radius
 height <- 10              # cylinder height
 num_around <- 360         # number of points around circle for cylinder pipe
-num_stacked <- 500       # number of circles stacked to create cylinder pipe
+num_stacked <- 720       # number of circles stacked to create cylinder pipe
 lids = TRUE               # We want full cylinder with lids (top, bottom)
 lid_step = 0.01        # step size for lids converging on center
 
