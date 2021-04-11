@@ -121,8 +121,10 @@ lids = TRUE               # We want full cylinder with lids (top, bottom)
 lid_step = 0.01        # step size for lids converging on center
 
 # create cylinder using parameters above
-cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked,
-									height, lids, lid_step)
+# cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked,
+# 									height, lids, lid_step)
+cylinder_for_mesh <- GetCylinder(x, y, radius, height, num_around, num_stacked,
+									lids, lid_step)
 
 # visualize point cloud
 library(rgl)
