@@ -1,21 +1,20 @@
-# GetCylinder() Arguments:
-# x: x coordinate for cylinder base center
-# y: y coordinate for cylinder base center
-#   the cylinder will be built over this x,y coordinate by stacking in z dim.
-# radius: the radius for the cylinder base
-# num_aroud: the number of vertices for the circle that builds the cylinder
-# num_up: the number of circles we stack to make the cylinder
-# height: the height of the cylinder
-# lids: boolean for if the cylinder should have end caps (lids).
-#   this effectively creates a cylinder instead of a pipe
-# lid_step: The step size for converging towards the center point for end lids
-# ______________________________________________________________________________
+# ~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~_~ GetCylinder() Function ~_~
+GetCylinder <- function(x=0, y=0, radius=1, height=10, num_around=25,
+						num_up=10, lids=TRUE, lid_step=-0.2) {
 
+	# __ GetCylinder() Arguments _______________________________________________
+	# Creates cylinder point cloud with various options.
+	#	x (int): ........... x coordinate for cylinder base center
+	#	y (int): ........... y coordinate for cylinder base center
+	#	radius (double): ... radius for the cylinder base
+	#	num_aroud (int): ... number of vertices in circle to stack
+	#	num_up (int): ...... number of circles we stack to make the cylinder
+	#	height (double): ... height of the cylinder
+	#	lids (boolean): .... when TRUE we create cylinder, FALSE creates pipe
+	#	lid_step: .......... step size for changing the radius to generate lids
 
-GetCylinder <- function(x=0, y=0, radius=1, num_around=25, num_up=5, height=10,
-                        lids=FALSE, lid_step=-0.01) {
   
-  # ____________________________________ argument validation ___________________
+	# ___________________________________________________ argument validation __
   # must have a radius
   if (radius <= 0) {
     err_message <- "radius MUST be greater than 0."
@@ -35,7 +34,8 @@ GetCylinder <- function(x=0, y=0, radius=1, num_around=25, num_up=5, height=10,
     err_message <- "height MUST be greater than 0."
   }
   
-  # ____________________________________ build cylinder ________________________
+
+	# ________________________________________________________ build cylinder __
   # get angle step for chopping circle into number of circle_points
   angle_step <- 2*pi / num_around
   # get sequence of angles
@@ -100,21 +100,29 @@ GetCylinder <- function(x=0, y=0, radius=1, num_around=25, num_up=5, height=10,
   return(cylinder)
 }
 
-# ______________________________________ cylinder with default args ____________
+
+# ________________________________________________ cylinder with default args __
+# generate cylinder
 cylinder_default_args <- GetCylinder()
+
+# plot cylinder
 library(rgl)
 plot3d(cylinder_default_args)
 
+# ________________________________________________ dense cylinder for meshing __
+# We want a cylinder with 0.25 radius and 10 height
+x <- 0                    # center x coord
+y <- 0                    # center y coord
+radius <- 0.25            # cylinder radius
+height <- 10              # cylinder height
+num_around <- 360         # number of points around circle for cylinder pipe
+num_stacked <- 1000       # number of circles stacked to create cylinder pipe
+lids = TRUE               # We want full cylinder with lids (top, bottom)
+lid_step = 0.00001        # step size for lids converging on center
 
-# ______________________________________ dense cylinder for meshing ____________
-x <- 0
-y <- 0
-radius <- 0.25
-height <- 10
-num_around <- 360
-num_stacked <- 500
-lids = TRUE
-lid_step = 0.00001
+# create cylinder using parameters above
+cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked,
+									height, lids, lid_step)
 
 cylinder_for_mesh <- GetCylinder(x, y, radius, num_around, num_stacked, height,
                                  lids, lid_step)
