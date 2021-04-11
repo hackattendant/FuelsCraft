@@ -16,23 +16,17 @@ GetCylinder <- function(x=0, y=0, radius=1, height=10, num_around=25,
   
 	# ___________________________________________________ argument validation __
   # must have a radius
-  if (radius <= 0) {
-    err_message <- "radius MUST be greater than 0."
-    stop(err_message)
-  }
+	if (radius <= 0)
+		stop("radius MUST be greater than 0.")
   # must have at least 3 points to create surfae
-  if (num_around < 3) {
-    err_message <- "num_around MUST be at least 3."
-  }
+	if (num_around < 3)
+		stop("num_around MUST be at least 3.")
   # num_up must be at least 2
-  if (num_up < 2) {
-    err_message <- "num_up MUST be at least 2."
-    stop(err_message)
-  }
+	if (num_up < 2)
+		stop("num_up MUST be at least 2.")
   # must have a height
-  if (height <= 0) {
-    err_message <- "height MUST be greater than 0."
-  }
+	if (height <= 0)
+		stop("height MUST be greater than 0.")
   
 
 	# ________________________________________________________ build cylinder __
