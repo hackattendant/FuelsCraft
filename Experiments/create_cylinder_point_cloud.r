@@ -64,15 +64,19 @@ GetCylinder <- function(x=0, y=0, radius=1, height=10, num_around=25,
       # get sequence of converging radius for building cylinder top and bottom
       radii <- seq(radius, 0, lid_step)
       
-      # get points for caps
-      cap_x <- (cos(angles)*radii + x)
-      cap_y <- (sin(angles)*radii + y)
+			# loop through radii and create lids for cylinder
+			for (radius_i in radii)
+			{
+				# get points for caps (lids) on cylinder
+				cap_x <- (cos(angles)*radius_i + x)
+				cap_y <- (sin(angles)*radius_i + y)
       cap_z <- rep(z, length(cap_x))
       
       # append caps to our cylinder data frame point cloud
       cylinder$x <- c(cylinder$x, cap_x)
       cylinder$y <- c(cylinder$y, cap_y)
       cylinder$z <- c(cylinder$z, cap_z)
+			}
       
       # if no lids, we just build a pipe
     } else {
