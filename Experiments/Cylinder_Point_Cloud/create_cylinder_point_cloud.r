@@ -24,8 +24,8 @@ validate_get_cylinder_args <- function(radius, height, num_around, num_stacks,
     # num_stacks must be at least 2
     if (num_stacks < 2)
         stop("num_stacks MUST be at least 2.")
-    # lid step must be negative to converge on center point
-    if (lid_step < 0 || lid_step >=1 )
+    # lid step must be small and positive
+    if (lid_step < 0 || lid_step >= 1)
         stop("lid_step MUST be small positive step size.")
 }
 
@@ -153,15 +153,18 @@ save_cylinder <- function(cylinder, file_name) {
 
 main <- function() {
     # build cylinder using default arguments
+    print("Building cylinder with defaults")
     cylinder_default <- get_cylinder()
     # build cylinder with surface area of 16.1
-    radius = 0.25
-    height = 10
-    num_around = 720
-    num_stacks = 1200
+    radius <- 0.25
+    height <- 10
+    num_around <- 720
+    num_stacks <- 1200
+    print("Building cylinder with radius 0.25 and height = 10")
     cylinder_for_mesh <- get_cylinder(radius, height, num_around, num_stacks, 
                                       lid_step=0.02)
 
+    print("Plotting cylinders")
     # plot cylinder with default arguments
     plot_cylinder(cylinder_default, "blue")
     # plot cylinder with surface area of 16.1
@@ -169,8 +172,9 @@ main <- function() {
 
 
     # save cylinder with surface area of 16.1 radius=0.25 height=10
+    print("Saving cylinder point cloud")
     save_path <- paste("~/Desktop/cylinder_w_surf_area_16.1_",
-                       "radius_0.25_height_10.xyz", sep="")
+                       "radius_0.25_height_10.xyz", sep = "")
 
     save_cylinder(cylinder_for_mesh, save_path)
 }
