@@ -158,11 +158,11 @@ main <- function() {
     # build cylinder with surface area of 16.1
     radius <- 0.25
     height <- 10
-    num_around <- 720
-    num_stacks <- 1200
+    num_around <- 360
+    num_stacks <- 1000
     print("Building cylinder with radius 0.25 and height = 10")
     cylinder_for_mesh <- get_cylinder(radius, height, num_around, num_stacks, 
-                                      lid_step=0.02)
+                                      lid_step = 0.02)
 
     print("Plotting cylinders")
     # plot cylinder with default arguments
@@ -173,8 +173,8 @@ main <- function() {
 
     # save cylinder with surface area of 16.1 radius=0.25 height=10
     print("Saving cylinder point cloud")
-    save_path <- paste("~/Desktop/cylinder_w_surf_area_16.1_",
-                       "radius_0.25_height_10.xyz", sep = "")
+    save_path <- paste("Experiments/Data/",
+                       "cylinder.xyz", sep = "")
 
     save_cylinder(cylinder_for_mesh, save_path)
 }
