@@ -17,6 +17,7 @@ if __name__ == "__main__":
     # # visualize
     # o3d.visualization.draw_geometries([pc], point_show_normal=True)
 
+    #TODO: add cpu time output
     # mesh point cloud cylinder using alpha shape approach
     alpha = 0.1
     print(f"alpha={alpha:.3f}")

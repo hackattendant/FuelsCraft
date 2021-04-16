@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     # # visualize
     # o3d.visualization.draw_geometries([pc], point_show_normal=True)
-
+#TODO: add cpu time output
     # set radii for various ball sizes
     radii = [0.005, 0.01, 0.02, 0.04]
 
