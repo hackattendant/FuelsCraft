@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # o3d.visualization.draw_geometries([pc], point_show_normal=True)
 
     # set radii for various ball sizes
-    radii = [0.005, 0.01, 0.02, 0.04, 0.1]
+    radii = [0.005, 0.01, 0.02, 0.04]
 
     with o3d.utility.VerbosityContextManager(
         o3d.utility.VerbosityLevel.Debug) as cm:
