@@ -15,14 +15,16 @@ if __name__ == "__main__":
     # create point cloud object from cylinder file
     pc = o3d.io.read_point_cloud(cylinder_file)
 
-    # # visualize
-    # o3d.visualization.draw_geometries([pc], point_show_normal=True)
+    # visualize
+    o3d.visualization.draw_geometries([pc])
+    # visualize
+    o3d.visualization.draw_geometries([pc], point_show_normal=True)
 
     # start timer
     start = time.time()
     # perform poisson surface reconstruction
     poisson_mesh, dens = o3d.geometry.TriangleMesh \
-                                     .create_from_point_cloud_poisson(pc)
+                                     .create_from_point_cloud_poisson(pc, depth=10)
 
     # stop timer
     stop = time.time()
